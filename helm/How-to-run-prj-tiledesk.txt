@@ -1,0 +1,38 @@
+minikube start
+
+kubectl get nodes
+
+minikube addons enable ingress
+minikube addons enable metrics-server
+
+1️⃣ Edit the ingress-nginx controller ConfigMap
+kubectl edit configmap ingress-nginx-controller -n ingress-nginx
+
+
+Set all three values exactly like this:
+
+data:
+  allow-snippet-annotations: "true"
+  annotations-risk-level: "Critical"
+  enable-annotation-validation: "false"
+
+kubectl rollout restart deployment ingress-nginx-controller -n ingress-nginx
+
+kubectl rollout status deployment ingress-nginx-controller -n ingress-nginx
+
+helm install tiledesk tiledesk/tiledesk \
+  --namespace tiledesk \
+  --create-namespace \
+  --set global.domain=tiledesk.local
+
+or
+
+helm upgrade tiledesk tiledesk/tiledesk   \
+-n tiledesk   \
+-f tildesk/tiledesk/helm/values.yaml
+
+
+
+minikube ip
+
+http://192.168.49.2/dashboard/#/login  

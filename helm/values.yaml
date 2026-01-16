@@ -269,8 +269,10 @@ server:
   enabled: true
   resources: {}
   image:  
-    repository: tiledesk.docker.scarf.sh/tiledesk/tiledesk-server
-    tag: 2.13.38
+    # repository: tiledesk.docker.scarf.sh/tiledesk/tiledesk-server
+    # tag: 2.13.38
+    repository: karan00002/autobotz-server
+    tag: latest
   service:
     type: ClusterIP
     port: 80
@@ -288,8 +290,10 @@ dashboard:
   enabled: true
   resources: {}
   image:
-    repository: tiledesk.docker.scarf.sh/tiledesk/tiledesk-dashboard
-    tag: 2.7.142
+    # repository: tiledesk.docker.scarf.sh/tiledesk/tiledesk-dashboard
+    # tag: 2.7.142
+    repository: karan00002/autobotz-dashboard
+    tag: latest
   service:
     type: ClusterIP
     port: 80
@@ -300,8 +304,10 @@ cds:
   enabled: true
   resources: {}
   image:
-    repository: tiledesk.docker.scarf.sh/tiledesk/design-studio
-    tag: 1.39.15
+    # repository: tiledesk.docker.scarf.sh/tiledesk/design-studio
+    # tag: 1.39.15
+    repository: karan00002/autobotz-design-studio
+    tag: latest
   service:
     type: ClusterIP
     port: 80
@@ -312,8 +318,10 @@ ionic:
   enabled: true
   resources: {}
   image:
-    repository: chat21/chat21-ionic
-    tag: 3.4.27
+    # repository: chat21/chat21-ionic
+    # tag: 3.4.27
+    repository: karan00002/chat21-ionic
+    tag: latest
   service:
       type: ClusterIP
       port: 80
@@ -325,8 +333,10 @@ webwidget:
   enabled: true
   resources: {}
   image:
-    repository: chat21/chat21-web-widget
-    tag: 5.0.103
+    # repository: chat21/chat21-web-widget
+    # tag: 5.0.103
+    repository: karan00002/chat21-web-widget
+    tag: latest
     # pullPolicy: Always
   service:
       type: ClusterIP
@@ -360,7 +370,7 @@ imagePullSecrets: #[]
   - name: tiledesk-enterprise-image-secret
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "" #autobotz
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -396,6 +406,7 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite ^/firebase-messaging-sw.js /chat/firebase-messaging-sw.js last;
   hosts:
