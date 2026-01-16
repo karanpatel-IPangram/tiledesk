@@ -96,7 +96,7 @@ EMAIL_REDIRECT_TO_DESKTOP_TEMPLATE: CHANGEIT
 
 SUPER_PASSWORD: superadmin
 
-MONGODB_LOGS_URI: CHANGEIT
+# MONGODB_LOGS_URI: CHANGEIT
 RESTHOOK_ENABLED: true
 WEBHOOK_ORIGIN: http://api.tiledesk.local
 SYNC_CHAT21_GROUPS: false
@@ -255,7 +255,15 @@ API_BASEIMAGE_URL: /api/
 API_URL: /api/
 BASE_FILE_URL: /api/
 BASE_URL: /
-#MONGODB_URI: mongodb://tiledesk-mongo/tiledesk
+
+# MONGODB_URI: mongodb://tiledesk-mongo/tiledeMONGODB_URI: mongodb://autobotz-mongodb/tiledesk
+MONGODB_LOGS_URI: mongodb://autobotz-mongodb/tiledesk
+DATABASE_URI: mongodb://autobotz-mongodb/tiledesk
+MONGODB_URL: mongodb://autobotz-mongodb/tiledesk
+RASA_MONGODB_URI: mongodb://autobotz-mongodb/tiledesk
+MONGODB_URI: mongodb://autobotz-mongodb/tiledesk
+
+
 ###### ------COMMON CONF : END------ ######
 
 ###### ------DOLPHIN-SCHEDULER : START------ ######
@@ -282,8 +290,9 @@ serverworker:
   resources: {} 
   image:  
     repository: tiledesk.docker.scarf.sh/tiledesk/tiledesk-server-worker
-    tag: 2.13.38
-
+    # tag: 2.13.38
+    tag: latest
+    
 dashboard:
   ## Enable deployment of Tiledesk Server
   ##da
@@ -349,7 +358,8 @@ c21httpsrv:
   resources: {}
   image:  
     repository: chat21/chat21-http-server
-    tag: 0.2.41
+    # tag: 0.2.41
+    tag: latest
     # pullPolicy: IfNotPresent  
   service:    
     type: ClusterIP
@@ -362,7 +372,8 @@ c21srv:
   resources: {}
   image:  
     repository: chat21/chat21-server
-    tag: 0.2.54
+    # tag: 0.2.54
+    tag: latest
     #tag: 0.2.41
     # pullPolicy: IfNotPresent  
 

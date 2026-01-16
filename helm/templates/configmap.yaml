@@ -207,7 +207,13 @@ data:
               "{{ .Values.BASE_URL }}"
             {{- end }}
 
-  MONGODB_URI: {{if .Values.MONGODB_URI}}{{ .Values.MONGODB_URI | quote }}{{ else }}mongodb://{{ include "tiledesk.fullname" . }}-mongodb/tiledesk{{ end }}
+  # MONGODB_URI: {{if .Values.MONGODB_URI}}{{ .Values.MONGODB_URI | quote }}{{ else }}mongodb://{{ include "tiledesk.fullname" . }}-mongodb/tiledesk{{ end }}
+  MONGODB_URI: {{ if and (.Values.MONGODB_URI) (ne .Values.MONGODB_URI "") }}
+      {{ .Values.MONGODB_URI | quote }}
+      {{ else }}
+      mongodb://{{ include "tiledesk.fullname" . }}-mongodb/tiledesk
+      {{ end }}
+
   PRESENCE_ENABLED: {{ .Values.PRESENCE_ENABLED | quote }}
 
   PAYMENT_STRIPE_APIKEY: {{ .Values.PAYMENT_STRIPE_APIKEY | quote }}
