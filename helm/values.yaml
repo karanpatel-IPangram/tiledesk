@@ -306,7 +306,7 @@ cds:
   image:
     # repository: tiledesk.docker.scarf.sh/tiledesk/design-studio
     # tag: 1.39.15
-    repository: karan00002/autobotz-design-studio
+    repository: karan00002/autobotz-studio
     tag: latest
   service:
     type: ClusterIP
@@ -369,8 +369,8 @@ c21srv:
 imagePullSecrets: #[]
   - name: tiledesk-enterprise-image-secret
 
-nameOverride: ""
-fullnameOverride: "" #autobotz
+nameOverride: "" 
+fullnameOverride: "autobotz" #autobotz
 
 serviceAccount:
   # Specifies whether a service account should be created
